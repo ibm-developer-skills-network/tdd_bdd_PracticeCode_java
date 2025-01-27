@@ -1,14 +1,12 @@
 package com.hello;
-
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.EmptyStackException;
 
 /**
  * Test cases for Stack
  */
-class StackTest {
-    private Stack<String> stack;
+class TestStack {
+    private Stack<Object> stack;
     
     /**
      * Setup before each test
@@ -31,9 +29,7 @@ class StackTest {
      */
     @Test
     void testPush() {
-        stack.push("test");
-        assertFalse(stack.isEmpty());
-        assertEquals("test", stack.peek());
+        Assertions.fail("not implemented");
     }
     
     /**
@@ -41,17 +37,7 @@ class StackTest {
      */
     @Test
     void testPop() {
-        stack.push("first");
-        stack.push("second");
-        
-        assertEquals("second", stack.pop());
-        assertEquals("first", stack.pop());
-        assertTrue(stack.isEmpty());
-        
-        // Test popping from empty stack
-        assertThrows(EmptyStackException.class, () -> {
-            stack.pop();
-        });
+        Assertions.fail("not implemented");
     }
     
     /**
@@ -59,15 +45,7 @@ class StackTest {
      */
     @Test
     void testPeek() {
-        stack.push("test");
-        assertEquals("test", stack.peek());
-        assertFalse(stack.isEmpty());  // Verify peek doesn't remove the item
-        
-        // Test peeking at empty stack
-        Stack<String> emptyStack = new Stack<>();
-        assertThrows(EmptyStackException.class, () -> {
-            emptyStack.peek();
-        });
+        Assertions.fail("not implemented");
     }
     
     /**
@@ -75,12 +53,6 @@ class StackTest {
      */
     @Test
     void testIsEmpty() {
-        assertTrue(stack.isEmpty());
-        
-        stack.push("test");
-        assertFalse(stack.isEmpty());
-        
-        stack.pop();
-        assertTrue(stack.isEmpty());
+        Assertions.fail("not implemented");
     }
 }
