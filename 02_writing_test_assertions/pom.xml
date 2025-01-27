@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.hello</groupId>
-    <artifactId>01_running_tests_with_jacoco</artifactId>
+    <artifactId>02_writing_test_assertions</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -24,7 +24,7 @@
     </properties>
 
     <build>
-        <finalName>01_running_tests_with_jacoco</finalName>
+        <finalName>02_writing_test_assertions</finalName>
         <plugins>
           <plugin>
     <groupId>org.apache.maven.plugins</groupId>
