@@ -35,7 +35,8 @@ class AccountTest {
 
     @BeforeEach
     void setUp() {
-        // Clear all accounts before each test
+        em = emf.createEntityManager();
+        
     }
 
     @AfterEach
@@ -43,6 +44,5 @@ class AccountTest {
        
     }
 
-    // Test Cases
-    
+   
 }
