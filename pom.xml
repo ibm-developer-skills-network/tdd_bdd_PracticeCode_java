@@ -16,6 +16,7 @@
         <module>01_running_tests_with_jacoco</module>
         <module>02_writing_test_assertions</module>
         <module>03_test_fixtures</module>
+        <module>04_test_coverage</module>
     </modules>
 
     <properties>
