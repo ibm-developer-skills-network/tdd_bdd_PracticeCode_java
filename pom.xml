@@ -17,6 +17,7 @@
         <module>02_writing_test_assertions</module>
         <module>03_test_fixtures</module>
         <module>04_test_coverage</module>
+        <module>05_factories_and_fakes</module>
     </modules>
 
     <properties>
