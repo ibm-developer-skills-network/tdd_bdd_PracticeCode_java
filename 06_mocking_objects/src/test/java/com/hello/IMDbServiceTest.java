@@ -11,7 +11,6 @@ import java.util.Map;
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class IMDbServiceTest {
@@ -31,10 +30,7 @@ public class IMDbServiceTest {
     }
 }
 
-    @BeforeEach
-    void setUp() {
-        imdbService = mock(IMDbService.class);
-    }
+   
 
-   //   T E S T   C A S E S
+   
 }
