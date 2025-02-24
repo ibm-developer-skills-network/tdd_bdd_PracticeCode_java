@@ -1,51 +1,50 @@
 package com.hello;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
+import java.net.URI;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * REST Controller for Counter Service
- */
 @RestController
-@RequestMapping("/counters")
+@RequestMapping("/")
 public class CounterController {
-
-    private static final Logger logger = LoggerFactory.getLogger(CounterController.class);
     
-    // In-memory storage for counters, similar to the COUNTERS dictionary in Python
-    private static final Map<String, Integer> COUNTERS = new HashMap<>();
+    private static final Logger logger = LoggerFactory.getLogger(CounterController.class);
+    private final ConcurrentHashMap<String, Integer> COUNTER = new ConcurrentHashMap<>();
 
-    /**
-     * Creates a counter
-     * 
-     * @param name the name of the counter to create
-     * @return ResponseEntity with the counter data or conflict message
-     */
-    @PostMapping("/{name}")
+
+
+    @PostMapping("/counters/{name}")
     public ResponseEntity<Map<String, Object>> createCounter(@PathVariable String name) {
-        logger.info("Request to create counter: {}", name);
+        logger.info("Request to Create counter: {}...", name);
         
-        // Check if counter already exists
-        if (COUNTERS.containsKey(name)) {
-            Map<String, Object> response = new HashMap<>();
-            response.put("message", String.format("Counter %s already exists", name));
-            return ResponseEntity.status(HttpStatus.HTTP_409_CONFLICT).body(response);
+        if (COUNTER.containsKey(name)) {
+            return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(Map.of("error", String.format("Counter %s already exists", name)));
         }
+
+        COUNTER.put(name, 0);
         
-        // Create new counter
-        COUNTERS.put(name, 0);
-        
-        // Return the counter data
-        Map<String, Object> response = new HashMap<>();
-        response.put(name, COUNTERS.get(name));
-        return ResponseEntity.status(HttpStatus.HTTP_201_CREATED).body(response);
+        URI location = ServletUriComponentsBuilder
+            .fromCurrentRequest()
+            .buildAndExpand(name)
+            .toUri();
+
+        return ResponseEntity
+            .created(location)
+            .body(Map.of("name", name, "counter", 0));
+    }
+
+   
+
+    public void resetCounters() {
+        COUNTER.clear();
     }
 }
