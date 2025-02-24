@@ -19,6 +19,7 @@
         <module>04_test_coverage</module>
         <module>05_factories_and_fakes</module>
         <module>06_mocking_objects</module>
+        <module>07_practicing_tdd</module>
     </modules>
 
     <properties>
@@ -29,23 +30,20 @@
          <assertj-core.version>3.24.1</assertj-core.version>
           <hibernate.version>6.4.1.Final</hibernate.version>
         <h2.version>2.2.224</h2.version>
+        <spring-boot.version>3.4.3</spring-boot.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
-            <!-- Testing -->
-             <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj-core.version}</version>
-        </dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+           
         </dependencies>
     </dependencyManagement>
 
@@ -61,6 +59,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.1.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
