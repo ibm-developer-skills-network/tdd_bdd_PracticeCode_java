@@ -27,24 +27,7 @@ public class Hooks {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         testContext.setDriver(driver);
         
-        // Set the BASE_URL environment variable
-        String baseUrl = System.getenv("BASE_URL");
-        if (baseUrl == null) {
-            baseUrl = "http://localhost:8080";
-        }
-        testContext.setBaseUrl(baseUrl);
         
-        // Set the WAIT_SECONDS environment variable
-        String waitSecondsStr = System.getenv("WAIT_SECONDS");
-        int waitSeconds = 60; // default value
-        if (waitSecondsStr != null) {
-            try {
-                waitSeconds = Integer.parseInt(waitSecondsStr);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid WAIT_SECONDS value, using default: 60");
-            }
-        }
-        testContext.setWaitSeconds(waitSeconds);
     }
     
     @After("@cucumber")
