@@ -21,6 +21,7 @@
         <module>06_mocking_objects</module>
         <module>07_practicing_tdd</module>
         <module>08_environment_setup</module>
+        <module>10_loading_test_data</module>
     </modules>
 
     <properties>
