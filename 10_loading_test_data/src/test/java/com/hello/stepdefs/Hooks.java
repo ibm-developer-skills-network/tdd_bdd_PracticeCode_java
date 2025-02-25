@@ -37,7 +37,7 @@ public class Hooks {
         
         // Initialize WebDriver
         FirefoxOptions options = new FirefoxOptions();
-        options.addArgument("--headless");
+        options.addArguments("--headless"); // Changed from addArgument to addArguments
         WebDriver driver = new FirefoxDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(waitSeconds));
         context.setDriver(driver);
