@@ -23,33 +23,5 @@ public class WebSteps {
         this.driver = context.getDriver();
     }
 
-    @Given("I am on the {string}")
-    public void iAmOnThe(String pageName) {
-        throw new io.cucumber.java.PendingException("Step not yet implemented");
-    }
-
-    @When("I set the {string} to {string}")
-    public void iSetTheTo(String elementName, String textString) {
-        throw new io.cucumber.java.PendingException("Step not yet implemented");
-    }
-
-    @When("I click the {string} button")
-    public void iClickTheButton(String button) {
-        throw new io.cucumber.java.PendingException("Step not yet implemented");
-    }
-
-    @Then("I should see the message {string}")
-    public void iShouldSeeTheMessage(String message) {
-        throw new io.cucumber.java.PendingException("Step not yet implemented");
-    }
-
-    @Then("I should see {string} in the results")
-    public void iShouldSeeInTheResults(String name) {
-        throw new io.cucumber.java.PendingException("Step not yet implemented");
-    }
-
-    @Then("I should not see {string} in the results")
-    public void iShouldNotSeeInTheResults(String name) {
-        throw new io.cucumber.java.PendingException("Step not yet implemented");
-    }
+    
 }
