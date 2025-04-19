@@ -23,6 +23,7 @@
         <module>08_environment_setup</module>
         <module>09_writing_feature_files</module>
         <module>10_loading_test_data</module>
+        <module>11_generating_steps_with_cucumber</module>
     </modules>
 
     <properties>
