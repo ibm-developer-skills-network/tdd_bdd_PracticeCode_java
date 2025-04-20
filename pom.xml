@@ -25,6 +25,7 @@
         <module>10_loading_test_data</module>
         <module>11_generating_steps_with_cucumber</module>
         <module>12_implementing_steps_with_cucumber</module>
+        <module>13_variable_substitution_with_cucumber</module>
     </modules>
 
     <properties>
