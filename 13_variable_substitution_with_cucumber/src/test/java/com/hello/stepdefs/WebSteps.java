@@ -70,9 +70,7 @@ public class WebSteps {
     public void iShouldNotSeeInTheResults(String name) {
         WebElement element = driver.findElement(By.id("search_results"));
         String resultsText = element.getText();
-        String errorMsg = String.format("I should not see '%s' in '%s'", name, resultsText);
         assertThat(resultsText.contains(name))
-                .withFailMessage(errorMsg)
                 .isFalse();
     }
 }
