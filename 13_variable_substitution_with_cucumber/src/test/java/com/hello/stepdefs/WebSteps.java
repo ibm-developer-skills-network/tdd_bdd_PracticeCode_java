@@ -13,6 +13,12 @@ import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Web Steps
+ * Steps file for web interactions with Selenium
+ * For information on waiting until elements are present in the HTML see:
+ * https://www.selenium.dev/documentation/webdriver/waits/
+ */
 public class WebSteps {
     private static final String ID_PREFIX = "pet_";
     private final TestContext context;
@@ -23,54 +29,45 @@ public class WebSteps {
         this.driver = context.getDriver();
     }
 
-    @Given("I am on the {string}")
-    public void iAmOnThe(String pageName) {
+    @Given("I am on the \"Home Page\"")
+    public void iAmOnTheHomePage() {
         driver.get(context.getBaseUrl());
     }
 
-    @When("I set the {string} to {string}")
-    public void iSetTheTo(String elementName, String textString) {
-        String elementId = ID_PREFIX + elementName.toLowerCase().replace(" ", "_");
-        WebElement element = driver.findElement(By.id(elementId));
+    @When("I set the \"Category\" to \"dog\"")
+    public void iSetTheCategoryToDog() {
+        WebElement element = driver.findElement(By.id("pet_category"));
         element.clear();
-        element.sendKeys(textString);
+        element.sendKeys("dog");
     }
 
-    @When("I click the {string} button")
-    public void iClickTheButton(String button) {
-        String buttonId = button.toLowerCase() + "-btn";
-        WebElement element = driver.findElement(By.id(buttonId));
+    @When("I click the \"Search\" button")
+    public void iClickTheSearchButton() {
+        WebElement element = driver.findElement(By.id("search-btn"));
         element.click();
     }
 
-    @Then("I should see the message {string}")
-    public void iShouldSeeTheMessage(String message) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(context.getWaitSeconds()));
-        boolean found = wait.until(
-                ExpectedConditions.textToBePresentInElementLocated(By.id("flash_message"), message)
-        );
-        assertThat(found).isTrue();
+    @Then("I should see the message \"Success\"")
+    public void iShouldSeeTheMessageSuccess() {
+        WebElement element = driver.findElement(By.id("flash_message"));
+        assertThat(element.getText()).contains("Success");
     }
 
-    @Then("I should see {string} in the results")
-    public void iShouldSeeInTheResults(String name) {
-        // First, wait for the search_results element to be visible/present
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(context.getWaitSeconds()));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search_results")));
-        
-        // Get the element and check if it contains the text
+    @Then("I should see \"Fido\" in the results")
+    public void iShouldSeeFidoInTheResults() {
         WebElement element = driver.findElement(By.id("search_results"));
-        String resultsText = element.getText();
-        
-        // Assert that the name is in the results text
-        assertThat(resultsText).contains(name);
+        assertThat(element.getText()).contains("Fido");
     }
 
-    @Then("I should not see {string} in the results")
-    public void iShouldNotSeeInTheResults(String name) {
+    @Then("I should not see \"Kitty\" in the results")
+    public void iShouldNotSeeKittyInTheResults() {
         WebElement element = driver.findElement(By.id("search_results"));
-        String resultsText = element.getText();
-        assertThat(resultsText.contains(name))
-                .isFalse();
+        assertThat(element.getText()).doesNotContain("Kitty");
+    }
+
+    @Then("I should not see \"Leo\" in the results")
+    public void iShouldNotSeeLeoInTheResults() {
+        WebElement element = driver.findElement(By.id("search_results"));
+        assertThat(element.getText()).doesNotContain("Leo");
     }
 }
